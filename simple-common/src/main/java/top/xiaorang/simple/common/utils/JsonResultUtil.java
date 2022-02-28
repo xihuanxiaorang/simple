@@ -12,24 +12,7 @@ public class JsonResultUtil {
    * @return JsonResult对象
    */
   public static JsonResult success() {
-    return JsonResult.builder()
-        .success(true)
-        .code(ResultCode.SUCCESS.getCode())
-        .message(ResultCode.SUCCESS.getMessage())
-        .build();
-  }
-
-  /**
-   * 返回通用的成功JsonResult对象
-   *
-   * @return JsonResult对象
-   */
-  public static JsonResult success(ResultCode resultCode) {
-    return JsonResult.builder()
-        .success(true)
-        .code(resultCode.getCode())
-        .message(resultCode.getMessage())
-        .build();
+    return success(null);
   }
 
   /**
@@ -52,11 +35,7 @@ public class JsonResultUtil {
    * @return JsonResult对象
    */
   public static JsonResult error() {
-    return JsonResult.builder()
-        .success(false)
-        .code(ResultCode.INNER_ERROR.getCode())
-        .message(ResultCode.INNER_ERROR.getMessage())
-        .build();
+    return error(ResultCode.INNER_ERROR.getCode(), ResultCode.INNER_ERROR.getMessage(), null);
   }
 
   /**
@@ -66,11 +45,7 @@ public class JsonResultUtil {
    * @return JsonResult对象
    */
   public static JsonResult error(ResultCode resultCode) {
-    return JsonResult.builder()
-        .success(false)
-        .code(resultCode.getCode())
-        .message(resultCode.getMessage())
-        .build();
+    return error(resultCode.getCode(), resultCode.getMessage(), null);
   }
 
   /**
@@ -81,7 +56,7 @@ public class JsonResultUtil {
    * @return JsonResult对象
    */
   public static JsonResult error(Integer code, String message) {
-    return JsonResult.builder().success(false).code(code).message(message).build();
+    return error(code, message, null);
   }
 
   /**
@@ -94,19 +69,5 @@ public class JsonResultUtil {
    */
   public static JsonResult error(Integer code, String message, Object data) {
     return JsonResult.builder().success(false).code(code).message(message).data(data).build();
-  }
-
-  /**
-   * 根据消息返回JsonResult对象
-   *
-   * @param message 消息
-   * @return JsonResult对象
-   */
-  public static JsonResult error(String message) {
-    return JsonResult.builder()
-        .success(false)
-        .code(ResultCode.INNER_ERROR.getCode())
-        .message(message)
-        .build();
   }
 }

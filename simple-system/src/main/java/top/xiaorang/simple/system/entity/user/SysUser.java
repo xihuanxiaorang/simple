@@ -39,7 +39,7 @@ public class SysUser extends BaseEntity implements UserDetails, Serializable {
 
   private Date lastLoginTime;
 
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
       name = "sys_user_role",
       joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
