@@ -1,5 +1,6 @@
 package top.xiaorang.simple.system.repository.user;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import top.xiaorang.simple.system.entity.user.SysUser;
 
@@ -12,5 +13,6 @@ public interface SysUserRepository extends JpaRepository<SysUser, String> {
    * @param username 用户名
    * @return 系统用户
    */
+  @EntityGraph(value = "SysUser.Graph", type = EntityGraph.EntityGraphType.FETCH)
   Optional<SysUser> findByUsername(String username);
 }

@@ -21,6 +21,9 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @Entity
+@NamedEntityGraph(
+    name = "SysUser.Graph",
+    attributeNodes = {@NamedAttributeNode("sysRoles")})
 public class SysUser extends BaseEntity implements UserDetails, Serializable {
   @Column(unique = true)
   private String username;
@@ -39,7 +42,7 @@ public class SysUser extends BaseEntity implements UserDetails, Serializable {
 
   private Date lastLoginTime;
 
-  @ManyToMany(fetch = FetchType.EAGER)
+  @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(
       name = "sys_user_role",
       joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
