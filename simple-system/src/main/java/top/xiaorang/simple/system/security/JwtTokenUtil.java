@@ -29,12 +29,12 @@ public class JwtTokenUtil {
   /**
    * 通过用户信息生成token令牌
    *
-   * @param userDetails 用户信息
+   * @param username 用户信息
    * @return token令牌
    */
-  public String generateToken(UserDetails userDetails) {
+  public String generateToken(String username) {
     Map<String, Object> claims = new HashMap<>(2);
-    claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
+    claims.put(CLAIM_KEY_USERNAME, username);
     claims.put(CLAIM_KEY_CREATED, new Date());
     return generateToken(claims);
   }

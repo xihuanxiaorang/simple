@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import top.xiaorang.simple.system.security.ip.IpAuthenticationProvider;
+import top.xiaorang.simple.system.security.ip.IpLoginConfigurer;
 import top.xiaorang.simple.system.service.user.SysUserService;
 
 @Configuration
@@ -22,6 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   private final MyLogoutSuccessHandler logoutSuccessHandler;
   private final MyAuthenticationEntryPoint authenticationEntryPoint;
   private final MyAccessDeniedHandler accessDeniedHandler;
+  private final IpLoginConfigurer ipLoginConfigurer;
 
   @Bean
   public PasswordEncoder passwordEncoder() {
@@ -30,7 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(sysUserService).passwordEncoder(passwordEncoder());
+    auth.authenticationProvider(new IpAuthenticationProvider())
+        .userDetailsService(sysUserService)
+        .passwordEncoder(passwordEncoder());
   }
 
   @Override
@@ -45,6 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 全局不创建session
         .sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .and()
+        .apply(ipLoginConfigurer)
         .and()
         .formLogin()
         // 表单登录成功与失败处理器

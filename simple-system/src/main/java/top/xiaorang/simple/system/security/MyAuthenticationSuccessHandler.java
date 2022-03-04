@@ -25,8 +25,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
     response.setContentType("application/json;charset=UTF-8");
     response.setStatus(HttpServletResponse.SC_OK);
     JsonResult result =
-        JsonResultUtil.success(
-            jwtTokenUtil.generateToken((UserDetails) authentication.getPrincipal()));
+        JsonResultUtil.success(jwtTokenUtil.generateToken(authentication.getName()));
     response.getWriter().write(JSONUtil.toJsonStr(result));
   }
 }
