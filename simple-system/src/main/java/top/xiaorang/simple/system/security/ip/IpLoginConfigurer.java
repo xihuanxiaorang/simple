@@ -23,6 +23,7 @@ public class IpLoginConfigurer
         new IpAuthenticationFilter(http.getSharedObject(AuthenticationManager.class));
     ipAuthenticationFilter.setAuthenticationSuccessHandler(authenticationSuccessHandler);
     ipAuthenticationFilter.setAuthenticationFailureHandler(authenticationFailureHandler);
-    http.addFilterBefore(ipAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+    http.authenticationProvider(new IpAuthenticationProvider())
+        .addFilterBefore(ipAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
   }
 }

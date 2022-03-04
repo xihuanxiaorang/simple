@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import top.xiaorang.simple.system.security.ip.IpAuthenticationProvider;
 import top.xiaorang.simple.system.security.ip.IpLoginConfigurer;
 import top.xiaorang.simple.system.service.user.SysUserService;
 
@@ -33,9 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.authenticationProvider(new IpAuthenticationProvider())
-        .userDetailsService(sysUserService)
-        .passwordEncoder(passwordEncoder());
+    auth.userDetailsService(sysUserService).passwordEncoder(passwordEncoder());
   }
 
   @Override
