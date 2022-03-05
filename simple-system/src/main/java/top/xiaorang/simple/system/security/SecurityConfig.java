@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import top.xiaorang.simple.system.security.ip.IpLoginConfigurer;
+import top.xiaorang.simple.system.security.extand.ip.IpLoginConfigurer;
 import top.xiaorang.simple.system.service.user.SysUserService;
 
 @Configuration
@@ -62,7 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
         .authorizeRequests()
         // 除了白名单之外的url都需要认证
-        .antMatchers(SecurityConfigConstant.LOGIN_WHITE_URL)
+        .antMatchers(SecurityConstant.LOGIN_WHITE_URL)
         .permitAll()
         .anyRequest()
         .authenticated()

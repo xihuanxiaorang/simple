@@ -1,4 +1,4 @@
-package top.xiaorang.simple.system.security.ip;
+package top.xiaorang.simple.system.security.extand.ip;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,14 +16,16 @@ public class IpLoginConfigurer
     extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
   private final MyAuthenticationSuccessHandler authenticationSuccessHandler;
   private final MyAuthenticationFailureHandler authenticationFailureHandler;
+  private final IpAuthenticationProvider ipAuthenticationProvider;
 
   @Override
   public void configure(HttpSecurity http) {
-    IpAuthenticationFilter ipAuthenticationFilter =
-        new IpAuthenticationFilter(http.getSharedObject(AuthenticationManager.class));
+    IpAuthenticationFilter ipAuthenticationFilter = new IpAuthenticationFilter();
+    ipAuthenticationFilter.setAuthenticationManager(
+        http.getSharedObject(AuthenticationManager.class));
     ipAuthenticationFilter.setAuthenticationSuccessHandler(authenticationSuccessHandler);
     ipAuthenticationFilter.setAuthenticationFailureHandler(authenticationFailureHandler);
-    http.authenticationProvider(new IpAuthenticationProvider())
+    http.authenticationProvider(ipAuthenticationProvider)
         .addFilterBefore(ipAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
   }
 }

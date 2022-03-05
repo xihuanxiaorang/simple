@@ -23,3 +23,9 @@ spring:
   jpa:
     show-sql: true
     generate-ddl: false
+
+  session:
+    timeout: 30s
+  mvc:
+    async:
+      request-timeout: 30s
