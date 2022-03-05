@@ -8,14 +8,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.SpringSecurityMessageSource;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Component
 public class IpAuthenticationProvider implements AuthenticationProvider, MessageSourceAware {
   protected MessageSourceAccessor messages = SpringSecurityMessageSource.getAccessor();
   private static final Map<String, SimpleGrantedAuthority> ipAuthorityMap =

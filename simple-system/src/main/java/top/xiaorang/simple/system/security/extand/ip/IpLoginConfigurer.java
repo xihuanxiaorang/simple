@@ -16,7 +16,11 @@ public class IpLoginConfigurer
     extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
   private final MyAuthenticationSuccessHandler authenticationSuccessHandler;
   private final MyAuthenticationFailureHandler authenticationFailureHandler;
-  private final IpAuthenticationProvider ipAuthenticationProvider;
+
+  @Override
+  public void init(HttpSecurity http) {
+    http.authenticationProvider(postProcess(new IpAuthenticationProvider()));
+  }
 
   @Override
   public void configure(HttpSecurity http) {
@@ -25,7 +29,6 @@ public class IpLoginConfigurer
         http.getSharedObject(AuthenticationManager.class));
     ipAuthenticationFilter.setAuthenticationSuccessHandler(authenticationSuccessHandler);
     ipAuthenticationFilter.setAuthenticationFailureHandler(authenticationFailureHandler);
-    http.authenticationProvider(ipAuthenticationProvider)
-        .addFilterBefore(ipAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+    http.addFilterBefore(ipAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
   }
 }
