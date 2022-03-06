@@ -22,6 +22,7 @@
         <hutool.version>5.7.20</hutool.version>
         <ksuid.version>1.1.0</ksuid.version>
         <jjwt.version>0.9.1</jjwt.version>
+        <kaptcha.version>2.3.2</kaptcha.version>
     </properties>
 
     <dependencyManagement>
@@ -50,6 +51,12 @@
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
                 <version>${jjwt.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.penggle</groupId>
+                <artifactId>kaptcha</artifactId>
+                <version>${kaptcha.version}</version>
             </dependency>
 
             <dependency>

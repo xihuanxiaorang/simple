@@ -1,14 +1,12 @@
 package top.xiaorang.simple.system.security;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import top.xiaorang.simple.system.security.extand.ip.IpLoginConfigurer;
 import top.xiaorang.simple.system.service.user.SysUserService;
@@ -18,6 +16,7 @@ import top.xiaorang.simple.system.service.user.SysUserService;
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
   private final SysUserService sysUserService;
+  private final PasswordEncoder passwordEncoder;
   private final MyAuthenticationFailureHandler authenticationFailureHandler;
   private final MyAuthenticationSuccessHandler authenticationSuccessHandler;
   private final MyLogoutSuccessHandler logoutSuccessHandler;
@@ -25,14 +24,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   private final MyAccessDeniedHandler accessDeniedHandler;
   private final IpLoginConfigurer ipLoginConfigurer;
 
-  @Bean
-  public PasswordEncoder passwordEncoder() {
-    return NoOpPasswordEncoder.getInstance();
-  }
-
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(sysUserService).passwordEncoder(passwordEncoder());
+    auth.userDetailsService(sysUserService).passwordEncoder(passwordEncoder);
   }
 
   @Override

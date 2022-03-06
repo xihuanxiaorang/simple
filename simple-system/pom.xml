@@ -50,6 +50,10 @@
             <artifactId>jjwt</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.github.penggle</groupId>
+            <artifactId>kaptcha</artifactId>
+        </dependency>
+        <dependency>
             <groupId>top.xiaorang</groupId>
             <artifactId>simple-common</artifactId>
         </dependency>

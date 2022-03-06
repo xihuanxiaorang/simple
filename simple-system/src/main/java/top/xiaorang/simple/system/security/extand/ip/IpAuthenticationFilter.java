@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 public class IpAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
   private static final AntPathRequestMatcher DEFAULT_ANT_PATH_REQUEST_MATCHER =
-      new AntPathRequestMatcher(SecurityConstant.IP_LOGIN_PROCESSING_URL, "POST");
+      new AntPathRequestMatcher(SecurityConstant.DEFAULT_IP_LOGIN_PROCESSING_URL, "POST");
   private boolean postOnly = true;
 
   public IpAuthenticationFilter() {
