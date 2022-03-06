@@ -13,5 +13,12 @@ public interface ValidateCodeProcessor {
    */
   JsonResult create(ServletWebRequest request);
 
+  /**
+   * 校验验证码
+   *
+   * @param request request
+   */
+  void validate(ServletWebRequest request);
+
   boolean supports(ValidateCodeType validateCodeType);
 }

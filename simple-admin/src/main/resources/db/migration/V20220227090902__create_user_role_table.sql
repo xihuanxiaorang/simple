@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS `sys_user`
     gender          tinyint           NOT NULL NULL COMMENT '性别，0-男，1-女，2-未知',
     locked          tinyint DEFAULT 0 NOT NULL COMMENT '是否锁定，1-是，0-否',
     enabled         tinyint DEFAULT 1 NOT NULL COMMENT '是否可用，1-是，0-否',
+    phone           VARCHAR(32)       NOT NULL UNIQUE COMMENT '手机号',
     last_login_ip   VARCHAR(64)       NULL COMMENT '最后登录IP',
     last_login_time datetime(6)       NULL COMMENT '最后登录IP',
     created_time    datetime(6)       NOT NULL COMMENT '创建时间',
@@ -17,6 +18,11 @@ CREATE TABLE IF NOT EXISTS `sys_user`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_bin COMMENT '用户表';
+
+INSERT INTO `sys_user`(id, username, nickname, password, gender, phone, last_login_ip, last_login_time,
+                       created_time, updated_time)
+VALUES (1, 'admin', '管理员', '$2a$10$.YhjL3z3EgDGcXzWBfiHUO5kZ58qwkWWoFuqhhnHPM6TjWrsD3OKK', 1, '13838384388', null, null,
+        now(), now());
 
 CREATE TABLE IF NOT EXISTS `sys_role`
 (

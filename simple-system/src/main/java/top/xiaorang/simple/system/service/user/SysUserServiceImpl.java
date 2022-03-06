@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import top.xiaorang.simple.system.entity.user.SysUser;
 import top.xiaorang.simple.system.repository.user.SysUserRepository;
 
 @Service
@@ -16,5 +17,12 @@ public class SysUserServiceImpl implements SysUserService {
     return sysUserRepository
         .findByUsername(username)
         .orElseThrow(() -> new UsernameNotFoundException("用户名或密码错误！"));
+  }
+
+  @Override
+  public SysUser loadUserByPhone(String phone) {
+    return sysUserRepository
+        .findByPhone(phone)
+        .orElseThrow(() -> new UsernameNotFoundException("手机号错误！"));
   }
 }

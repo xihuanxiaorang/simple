@@ -20,15 +20,17 @@ public class ValidateCodeController {
   private final ValidateCodeProcessorHolder validateCodeProcessorHolder;
 
   /**
-   * @param type 验证码类型
+   * @param validateCodeType 验证码类型
    * @param request 请求
    * @param response 响应
    */
-  @GetMapping("/{type}")
+  @GetMapping("/{validateCodeType}")
   public JsonResult createValidateCode(
-      @PathVariable Integer type, HttpServletRequest request, HttpServletResponse response) {
+      @PathVariable Integer validateCodeType,
+      HttpServletRequest request,
+      HttpServletResponse response) {
     return validateCodeProcessorHolder
-        .findValidateCodeProcessorByType(type)
+        .findValidateCodeProcessorByType(validateCodeType)
         .create(new ServletWebRequest(request, response));
   }
 }

@@ -23,7 +23,14 @@ public enum ResultCode {
   VALIDATE_CODE_PROCESSOR_NOT_EXIST(1009, "验证码处理器不存在！"),
   MOBILE_NOT_EXIST(1010, "手机号不存在！"),
   MOBILE_IS_BLANK(1011, "手机号为空！"),
-  VALIDATE_CODE_CREATE_SUCCESS(1012, "验证码生成成功");
+  VALIDATE_CODE_CREATE_SUCCESS(1012, "验证码生成成功"),
+  VALIDATE_CODE_TYPE_PARAM_NOT_EXIST(1013, "验证码类型参数不存在！"),
+  VALIDATE_CODE_PARAM_NOT_EXIST(1014, "验证码参数不存在！"),
+  VALIDATE_CODE_IS_BLANK(1015, "验证码不能为空！"),
+  VALIDATE_CODE_NOT_EXIST(1016, "请先获取验证码！"),
+  VALIDATE_CODE_EXPIRED(1017, "验证码已过期！"),
+  VALIDATE_CODE_NOT_MATCH(1018, "验证码不正确！"),
+  MOBILE_PARAM_NOT_MATCH(1019, "手机号不匹配！");
 
   private final Integer code;
   private final String message;

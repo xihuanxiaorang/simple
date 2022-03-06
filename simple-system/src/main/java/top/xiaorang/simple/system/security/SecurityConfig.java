@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import top.xiaorang.simple.system.security.extand.ip.IpLoginConfigurer;
+import top.xiaorang.simple.system.security.extand.validatecode.ValidateCodeConfigurer;
+import top.xiaorang.simple.system.security.extand.validatecode.sms.SmsCodeLoginConfigurer;
 import top.xiaorang.simple.system.service.user.SysUserService;
 
 @Configuration
@@ -23,6 +25,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   private final MyAuthenticationEntryPoint authenticationEntryPoint;
   private final MyAccessDeniedHandler accessDeniedHandler;
   private final IpLoginConfigurer ipLoginConfigurer;
+  private final ValidateCodeConfigurer validateCodeConfigurer;
+  private final SmsCodeLoginConfigurer smsCodeLoginConfigurer;
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -44,7 +48,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
         .apply(ipLoginConfigurer)
         .and()
+        .apply(validateCodeConfigurer)
+        .and()
+        .apply(smsCodeLoginConfigurer)
+        .and()
         .formLogin()
+        .loginProcessingUrl(SecurityConstant.DEFAULT_SIGN_IN_PROCESSING_URL_FORM)
         // 表单登录成功与失败处理器
         .failureHandler(authenticationFailureHandler)
         .successHandler(authenticationSuccessHandler)

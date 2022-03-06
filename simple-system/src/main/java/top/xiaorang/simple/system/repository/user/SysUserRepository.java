@@ -15,4 +15,13 @@ public interface SysUserRepository extends JpaRepository<SysUser, String> {
    */
   @EntityGraph(value = "SysUser.Graph", type = EntityGraph.EntityGraphType.FETCH)
   Optional<SysUser> findByUsername(String username);
+
+  /**
+   * 通过手机号查找系统用户
+   *
+   * @param phone 手机号
+   * @return 系统用户
+   */
+  @EntityGraph(value = "SysUser.Graph", type = EntityGraph.EntityGraphType.FETCH)
+  Optional<SysUser> findByPhone(String phone);
 }

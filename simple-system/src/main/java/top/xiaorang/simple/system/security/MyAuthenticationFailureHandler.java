@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import top.xiaorang.simple.common.enums.ResultCode;
 import top.xiaorang.simple.common.pojo.JsonResult;
 import top.xiaorang.simple.common.utils.JsonResultUtil;
+import top.xiaorang.simple.system.exception.MyAuthenticationException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,6 +35,13 @@ public class MyAuthenticationFailureHandler implements AuthenticationFailureHand
     } else if (e instanceof InternalAuthenticationServiceException
         || e instanceof UsernameNotFoundException) {
       result = JsonResultUtil.error(ResultCode.USER_ACCOUNT_NOT_EXIST);
+    } else if (e instanceof MyAuthenticationException) {
+      MyAuthenticationException myAuthenticationException = (MyAuthenticationException) e;
+      result =
+          JsonResultUtil.error(
+              myAuthenticationException.getCode(),
+              myAuthenticationException.getMessage(),
+              myAuthenticationException.getData());
     } else {
       result = JsonResultUtil.error();
     }

@@ -24,9 +24,9 @@ public class GlobalExceptionHandler {
   }
 
   /**
-   * 拦截验证码异常
+   * 拦截自定义认证异常
    *
-   * @param e 验证码异常
+   * @param e 自定义认证异常
    * @return 通用结果封装对象
    */
   @ExceptionHandler(MyAuthenticationException.class)

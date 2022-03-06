@@ -6,6 +6,6 @@ import lombok.Data;
 public class ValidateCodeProperties {
   /** 验证码长度 */
   private int length = 6;
-  /** 过期时间 */
+  /** 过期时间，单位为秒 */
   private int expireIn = 60;
 }

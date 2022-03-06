@@ -1,4 +1,4 @@
-package top.xiaorang.simple.system.security.extand.ip;
+package top.xiaorang.simple.system.security.extand.validatecode.sms;
 
 import lombok.EqualsAndHashCode;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -7,18 +7,19 @@ import org.springframework.security.core.GrantedAuthority;
 import java.util.Collection;
 
 @EqualsAndHashCode(callSuper = true)
-public class IpAuthenticationToken extends AbstractAuthenticationToken {
-  private final String ip;
+public class SmsCodeAuthenticationToken extends AbstractAuthenticationToken {
+  private final String mobile;
 
-  public IpAuthenticationToken(String ip) {
+  public SmsCodeAuthenticationToken(String mobile) {
     super(null);
-    this.ip = ip;
+    this.mobile = mobile;
     this.setAuthenticated(false);
   }
 
-  public IpAuthenticationToken(String ip, Collection<? extends GrantedAuthority> authorities) {
+  public SmsCodeAuthenticationToken(
+      String mobile, Collection<? extends GrantedAuthority> authorities) {
     super(authorities);
-    this.ip = ip;
+    this.mobile = mobile;
     super.setAuthenticated(true);
   }
 
@@ -29,6 +30,6 @@ public class IpAuthenticationToken extends AbstractAuthenticationToken {
 
   @Override
   public Object getPrincipal() {
-    return ip;
+    return mobile;
   }
 }

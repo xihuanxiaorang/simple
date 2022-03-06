@@ -38,6 +38,8 @@ public class SysUser extends BaseEntity implements UserDetails, Serializable {
 
   private Boolean enabled;
 
+  private String phone;
+
   private String lastLoginIp;
 
   private Date lastLoginTime;

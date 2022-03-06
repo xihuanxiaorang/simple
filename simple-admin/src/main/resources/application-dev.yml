@@ -29,3 +29,12 @@ spring:
   mvc:
     async:
       request-timeout: 30s
+
+simple:
+  security:
+    image-code:
+      length: 4
+      expire-in: 1200
+    sms-code:
+      length: 4
+      expire-in: 1200
