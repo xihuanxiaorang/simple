@@ -1,4 +1,4 @@
-package top.xiaorang.simple.web.controller;
+package top.xiaorang.simple.system.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

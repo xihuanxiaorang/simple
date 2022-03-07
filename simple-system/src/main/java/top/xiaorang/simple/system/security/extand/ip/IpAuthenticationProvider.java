@@ -1,5 +1,6 @@
 package top.xiaorang.simple.system.security.extand.ip;
 
+import cn.hutool.core.util.ObjectUtil;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.context.support.MessageSourceAccessor;
@@ -9,6 +10,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.SpringSecurityMessageSource;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.util.Assert;
+import top.xiaorang.simple.common.enums.ResultCode;
+import top.xiaorang.simple.system.exception.MyAuthenticationException;
 
 import java.util.Collections;
 import java.util.Map;
@@ -33,10 +36,10 @@ public class IpAuthenticationProvider implements AuthenticationProvider, Message
                 "IpAuthenticationProvider.onlySupports",
                 "Only IpAuthenticationToken is supported"));
     String ip = (String) authentication.getPrincipal();
-    if (ipAuthorityMap.containsKey(ip)) {
-      return new IpAuthenticationToken(ip, Collections.singletonList(ipAuthorityMap.get(ip)));
+    if (!ipAuthorityMap.containsKey(ip)) {
+      throw new MyAuthenticationException(ResultCode.NOT_IN_WHITE_URL);
     }
-    return null;
+    return new IpAuthenticationToken(ip, Collections.singletonList(ipAuthorityMap.get(ip)));
   }
 
   @Override

@@ -30,7 +30,8 @@ public enum ResultCode {
   VALIDATE_CODE_NOT_EXIST(1016, "请先获取验证码！"),
   VALIDATE_CODE_EXPIRED(1017, "验证码已过期！"),
   VALIDATE_CODE_NOT_MATCH(1018, "验证码不正确！"),
-  MOBILE_PARAM_NOT_MATCH(1019, "手机号不匹配！");
+  MOBILE_PARAM_NOT_MATCH(1019, "手机号不匹配！"),
+  NOT_IN_WHITE_URL(1020, "当前登录地址不在白名单！");
 
   private final Integer code;
   private final String message;
