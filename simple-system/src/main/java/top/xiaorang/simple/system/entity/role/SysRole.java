@@ -11,6 +11,6 @@ import java.io.Serializable;
 @Setter
 @Entity
 public class SysRole extends BaseEntity implements Serializable {
-  private String name;
-  private String title;
+    private String name;
+    private String title;
 }

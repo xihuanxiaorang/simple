@@ -14,10 +14,10 @@ import top.xiaorang.simple.common.utils.JsonResultUtil;
 @Slf4j
 @Component
 public class DefaultSmsCodeSender implements SmsCodeSender {
-  @Override
-  public JsonResult send(SmsCode smsCode) {
-    log.warn("请配置真实的短信验证码发送器(SmsCodeSender)");
-    log.info("向手机" + smsCode.getMobile() + "发送短信验证码" + smsCode.getCode());
-    return JsonResultUtil.success(ResultCode.VALIDATE_CODE_CREATE_SUCCESS);
-  }
+    @Override
+    public JsonResult<?> send(SmsCode smsCode) {
+        log.warn("请配置真实的短信验证码发送器(SmsCodeSender)");
+        log.info("向手机" + smsCode.getMobile() + "发送短信验证码" + smsCode.getCode());
+        return JsonResultUtil.success(ResultCode.VALIDATE_CODE_CREATE_SUCCESS);
+    }
 }

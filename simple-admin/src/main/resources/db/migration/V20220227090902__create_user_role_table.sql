@@ -1,5 +1,7 @@
 CREATE DATABASE IF NOT EXISTS `simple` DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_bin;
 
+USE `simple`;
+
 CREATE TABLE IF NOT EXISTS `sys_user`
 (
     id              VARCHAR(32)       NOT NULL
@@ -21,7 +23,8 @@ CREATE TABLE IF NOT EXISTS `sys_user`
 
 INSERT INTO `sys_user`(id, username, nickname, password, gender, phone, last_login_ip, last_login_time,
                        created_time, updated_time)
-VALUES (1, 'admin', '管理员', '$2a$10$.YhjL3z3EgDGcXzWBfiHUO5kZ58qwkWWoFuqhhnHPM6TjWrsD3OKK', 1, '13838384388', null, null,
+VALUES (1, 'admin', '管理员', '$2a$10$.YhjL3z3EgDGcXzWBfiHUO5kZ58qwkWWoFuqhhnHPM6TjWrsD3OKK', 1, '13838384388', null,
+        null,
         now(), now());
 
 CREATE TABLE IF NOT EXISTS `sys_role`

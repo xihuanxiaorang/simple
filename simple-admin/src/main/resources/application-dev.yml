@@ -4,8 +4,8 @@ server:
 spring:
   datasource:
     username: root
-    password: 123456
-    url: jdbc:mysql://120.78.177.161:3306/simple?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    password:
+    url: jdbc:mysql://127.0.0.1:3306/simple?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -19,6 +19,7 @@ spring:
       auto-commit: true
   flyway:
     out-of-order: true
+    baseline-on-migrate: true
 
   jpa:
     show-sql: true

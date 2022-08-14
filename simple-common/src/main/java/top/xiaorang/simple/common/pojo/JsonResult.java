@@ -7,9 +7,9 @@ import java.io.Serializable;
 
 @Data
 @Builder
-public class JsonResult implements Serializable {
-  private boolean success;
-  private Integer code;
-  private String message;
-  private Object data;
+public class JsonResult<T> implements Serializable {
+    private boolean success;
+    private Integer code;
+    private String message;
+    private T data;
 }
