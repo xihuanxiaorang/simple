@@ -17,20 +17,20 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(SecurityConstant.DEFAULT_VALIDATE_CODE_URL_PREFIX)
 @RequiredArgsConstructor
 public class ValidateCodeController {
-  private final ValidateCodeProcessorHolder validateCodeProcessorHolder;
+    private final ValidateCodeProcessorHolder validateCodeProcessorHolder;
 
-  /**
-   * @param validateCodeType 验证码类型
-   * @param request 请求
-   * @param response 响应
-   */
-  @GetMapping("/{validateCodeType}")
-  public JsonResult createValidateCode(
-      @PathVariable Integer validateCodeType,
-      HttpServletRequest request,
-      HttpServletResponse response) {
-    return validateCodeProcessorHolder
-        .findValidateCodeProcessorByType(validateCodeType)
-        .create(new ServletWebRequest(request, response));
-  }
+    /**
+     * @param validateCodeType 验证码类型
+     * @param request          请求
+     * @param response         响应
+     */
+    @GetMapping("/{validateCodeType}")
+    public JsonResult<?> createValidateCode(
+            @PathVariable Integer validateCodeType,
+            HttpServletRequest request,
+            HttpServletResponse response) {
+        return validateCodeProcessorHolder
+                .findValidateCodeProcessorByType(validateCodeType)
+                .create(new ServletWebRequest(request, response));
+    }
 }

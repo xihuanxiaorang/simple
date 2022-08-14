@@ -23,7 +23,7 @@ public class ImageCodeProcessor extends AbstractValidateCodeProcessor<ImageCode>
     }
 
     @Override
-    protected JsonResult<?> send(ImageCode imageCode) {
+    protected JsonResult<String> send(ImageCode imageCode) {
         FastByteArrayOutputStream os = new FastByteArrayOutputStream();
         try {
             ImageIO.write(imageCode.getImage(), "png", os);

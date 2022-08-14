@@ -8,18 +8,18 @@ import top.xiaorang.simple.system.security.extand.validatecode.ValidateCodeRepos
 
 @Component
 public class SmsCodeProcessor extends AbstractValidateCodeProcessor<SmsCode> {
-  private final SmsCodeSender smsCodeSender;
+    private final SmsCodeSender smsCodeSender;
 
-  public SmsCodeProcessor(
-      SmsCodeGenerator smsCodeGenerator,
-      ValidateCodeRepository validateCodeRepository,
-      SmsCodeSender smsCodeSender) {
-    super(validateCodeRepository, smsCodeGenerator, ValidateCodeType.SMS);
-    this.smsCodeSender = smsCodeSender;
-  }
+    public SmsCodeProcessor(
+            SmsCodeGenerator smsCodeGenerator,
+            ValidateCodeRepository validateCodeRepository,
+            SmsCodeSender smsCodeSender) {
+        super(validateCodeRepository, smsCodeGenerator, ValidateCodeType.SMS);
+        this.smsCodeSender = smsCodeSender;
+    }
 
-  @Override
-  protected JsonResult send(SmsCode smsCode) {
-    return smsCodeSender.send(smsCode);
-  }
+    @Override
+    protected JsonResult<?> send(SmsCode smsCode) {
+        return smsCodeSender.send(smsCode);
+    }
 }

@@ -8,11 +8,11 @@ import top.xiaorang.simple.common.pojo.JsonResult;
  * @author liulei
  */
 public interface SmsCodeSender {
-  /**
-   * 发送短信验证码
-   *
-   * @param smsCode 手机号验证码
-   * @return 通用结果封装对象
-   */
-  JsonResult send(SmsCode smsCode);
+    /**
+     * 发送短信验证码
+     *
+     * @param smsCode 手机号验证码
+     * @return 通用结果封装对象
+     */
+    JsonResult<?> send(SmsCode smsCode);
 }
