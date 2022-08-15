@@ -22,63 +22,75 @@ import java.util.stream.Collectors;
 @Setter
 @Entity
 @NamedEntityGraph(
-    name = "SysUser.Graph",
-    attributeNodes = {@NamedAttributeNode("sysRoles")})
+        name = "SysUser.Graph",
+        attributeNodes = {@NamedAttributeNode("sysRoles")})
 public class SysUser extends BaseEntity implements UserDetails, Serializable {
-  @Column(unique = true)
-  private String username;
+    @Column(unique = true)
+    private String username;
 
-  private String nickname;
+    private String nickname;
 
-  private String password;
+    private String password;
 
-  private Gender gender;
+    private Gender gender;
 
-  private Boolean locked;
+    private Boolean locked = true;
 
-  private Boolean enabled;
+    private Boolean enabled = true;
 
-  private String phone;
+    private String phone;
 
-  private String lastLoginIp;
+    private String lastLoginIp;
 
-  private Date lastLoginTime;
+    private Date lastLoginTime;
 
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(
-      name = "sys_user_role",
-      joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-      inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
-  private List<SysRole> sysRoles;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "sys_user_role",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
+    private List<SysRole> sysRoles;
 
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    if (CollUtil.isNotEmpty(sysRoles)) {
-      return sysRoles.stream()
-          .map(SysRole::getTitle)
-          .map(SimpleGrantedAuthority::new)
-          .collect(Collectors.toList());
+    public SysUser() {
     }
-    return Collections.emptyList();
-  }
 
-  @Override
-  public boolean isAccountNonExpired() {
-    return true;
-  }
+    public SysUser(String username, String nickname, String password, Gender gender, Boolean enabled, String phone) {
+        this.username = username;
+        this.nickname = nickname;
+        this.password = password;
+        this.gender = gender;
+        this.enabled = enabled;
+        this.phone = phone;
+    }
 
-  @Override
-  public boolean isAccountNonLocked() {
-    return !locked;
-  }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (CollUtil.isNotEmpty(sysRoles)) {
+            return sysRoles.stream()
+                    .map(SysRole::getTitle)
+                    .map(SimpleGrantedAuthority::new)
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
 
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return true;
-  }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-  @Override
-  public boolean isEnabled() {
-    return enabled;
-  }
+    @Override
+    public boolean isAccountNonLocked() {
+        return !locked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
 }

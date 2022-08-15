@@ -19,8 +19,11 @@ import java.util.List;
 public class ResourceVOTests {
     @Test
     public void test() {
-        List<ResourceVO> listVOS = TreeUtil.generateTree(buildData());
+        List<ResourceVO> listVOS = TreeUtil.listToTree(buildData());
         System.out.println(JSONUtil.toJsonStr(listVOS));
+
+        List<ResourceVO> resourceVOS = TreeUtil.treeToList(listVOS);
+        System.out.println(JSONUtil.toJsonStr(resourceVOS));
     }
 
     public List<ResourceVO> buildData() {

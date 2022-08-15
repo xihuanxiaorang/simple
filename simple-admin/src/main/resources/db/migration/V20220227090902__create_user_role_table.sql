@@ -21,12 +21,6 @@ CREATE TABLE IF NOT EXISTS `sys_user`
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_bin COMMENT '用户表';
 
-INSERT INTO `sys_user`(id, username, nickname, password, gender, phone, last_login_ip, last_login_time,
-                       created_time, updated_time)
-VALUES (1, 'admin', '管理员', '$2a$10$.YhjL3z3EgDGcXzWBfiHUO5kZ58qwkWWoFuqhhnHPM6TjWrsD3OKK', 1, '13838384388', null,
-        null,
-        now(), now());
-
 CREATE TABLE IF NOT EXISTS `sys_role`
 (
     id           VARCHAR(32)  NOT NULL

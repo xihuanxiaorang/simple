@@ -15,14 +15,16 @@ import java.util.Date;
 @Setter
 @MappedSuperclass
 public class BaseEntity {
-  @Id
-  @GeneratedValue(generator = "ksuid")
-  @GenericGenerator(
-      name = "ksuid",
-      strategy = "top.xiaorang.simple.system.utils.KsuidIdentifierGenerator")
-  private String id;
+    @Id
+    @GeneratedValue(generator = "ksuid")
+    @GenericGenerator(
+            name = "ksuid",
+            strategy = "top.xiaorang.simple.system.utils.KsuidIdentifierGenerator")
+    private String id;
 
-  @CreationTimestamp private Date createdTime;
+    @CreationTimestamp
+    private Date createdTime;
 
-  @UpdateTimestamp private Date updatedTime;
+    @UpdateTimestamp
+    private Date updatedTime;
 }
